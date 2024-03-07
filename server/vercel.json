@@ -1,17 +1,14 @@
 {
-  "headers": [
+  "builds": [
     {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "https://e20-seven.vercel.app"
-        },
-        {
-          "key": "Access-Control-Allow-Credentials",
-          "value": "true"
-        }
-      ]
+      "src": "*.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes" : [
+    {
+      "src": "/(.*)",
+      "dest": "/"
     }
   ]
 }
