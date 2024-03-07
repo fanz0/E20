@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState, useContext } from "react";
 import { UserContext } from "../stores/UserContext";
+import Lottie from "lottie-react";
+import loadingAnimation from "../../images/loading-animation.json";
 
 export const EventsList = () => {
   const [events, setEvents] = useState([]);
 
+  const [isLoading, setIsLoading] = useState(true);
   const { isLoggedIn } = useContext(UserContext);
 
   useEffect(() => {
@@ -23,7 +26,16 @@ export const EventsList = () => {
       })
       .then((data) => {
         setEvents(data);
+        setIsLoading(false);
       });
+  }
+
+  if (isLoading) {
+    return (
+      <div className="md:w-[50%] mx-auto">
+        <Lottie animationData={loadingAnimation} />
+      </div>
+    );
   }
 
   return (
