@@ -58,7 +58,13 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-app.use(cors());
+app.use(cors(
+  {
+    origin: ["https://e20-api.vercel.app/"],
+    method: ["post", "get"],
+    credentials: true
+  }
+));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use("/api/events", eventRoute);
