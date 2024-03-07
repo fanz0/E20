@@ -60,13 +60,13 @@ passport.deserializeUser(async (id, done) => {
 
 app.use(cors(
   {
-    origin: ["https://e20-seven.vercel.app"],
+    origin: "https://e20-seven.vercel.app",
     method: ["post", "get"],
     credentials: true
   }
 ));
-app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
 app.use("/api/events", eventRoute);
 app.use("/api/user", userRoute);
 
