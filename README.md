@@ -30,4 +30,4 @@ This a full stack project, realized with MERN stack and Tailwindcss.
 
 ## Website
 
-Enjoy the site.
+Enjoy the site -> https://e20-seven.vercel.app/
