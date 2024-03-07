@@ -12,6 +12,15 @@ const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
 require("dotenv").config();
 
+// CORS configure
+app.use(cors(
+  {
+    origin: "https://e20-seven.vercel.app/",
+    method: ["post", "get"],
+    credentials: true
+  }
+));
+
 // Session Configure
 app.use(
   session({
@@ -58,13 +67,6 @@ passport.deserializeUser(async (id, done) => {
   }
 });
 
-app.use(cors(
-  {
-    origin: "https://e20-seven.vercel.app/",
-    method: ["post", "get"],
-    credentials: true
-  }
-));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use("/api/events", eventRoute);
