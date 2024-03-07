@@ -15,6 +15,7 @@ export const LoginForm = () => {
 
     fetch("https://e20-api.vercel.app/api/user/login", {
       method: "post",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
