@@ -14,6 +14,7 @@ export const RegisterForm = () => {
 
     fetch("https://e20-api.vercel.app/api/user/register", {
       method: "post",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
