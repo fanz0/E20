@@ -13,6 +13,8 @@ The aim of that is to help people to organize the day after work and to help bus
 - It’s possible to add a new event with the right button “Aggiungi evento”. But attention: you have to do the registration or the login before, otherwise the button is disabled.
 - In the bottom there’s the footer with all links and information about company.
 
+https://github.com/fanz0/E20/assets/99316714/ec85a56b-a60d-42a5-b922-94b04fc670a8
+
 ## Start the website in local
 
 To start the website in the local database you need some informations:
