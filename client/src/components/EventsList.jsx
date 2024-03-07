@@ -12,7 +12,7 @@ export const EventsList = () => {
   }, []);
 
   function fetchEvents() {
-    fetch("http://localhost:3000/api/events")
+    fetch("https://e20-api.vercel.app/api/events")
       .then((response) => {
         if (!response.ok) {
           throw new Error(response.status);
