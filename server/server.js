@@ -13,7 +13,13 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 // CORS configure
-app.use(cors());
+app.use(cors(
+    {
+    origin: "https://e20-seven.vercel.app",
+    method: ["GET", "POST"],
+    credentials: true
+  }
+));
 
 // Session Configure
 app.use(
