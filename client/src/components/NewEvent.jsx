@@ -10,6 +10,7 @@ export const NewEvent = () => {
 
     fetch("https://e20-api.vercel.app/api/events", {
       method: "post",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },
