@@ -15,8 +15,8 @@ require("dotenv").config();
 // CORS configure
 app.use(cors(
   {
-    origin: "https://e20-seven.vercel.app/",
-    method: ["post", "get"],
+    origin: "https://e20-seven.vercel.app",
+    method: ["GET", "POST"],
     credentials: true
   }
 ));
