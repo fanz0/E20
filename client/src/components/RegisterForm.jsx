@@ -30,6 +30,7 @@ export const RegisterForm = () => {
       })
       .then((data) => {
         navigate("/");
+        localStorage.setItem("token", data.token);
         setIsLoggedIn(true);
         alert(data.message);
       })

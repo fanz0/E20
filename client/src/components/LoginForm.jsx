@@ -31,6 +31,7 @@ export const LoginForm = () => {
       })
       .then((data) => {
         navigate("/");
+        localStorage.setItem("token", data.token);
         setIsLoggedIn(true);
         alert(data.message);
       })
