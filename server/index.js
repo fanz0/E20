@@ -76,7 +76,7 @@ app.get("/", (req, res) => {
   if (req.isAuthenticated()) {
     res.status(200).json({ message: "Active" });
   } else {
-    res.status(200).json({ message: "Inactive" });
+    res.status(200).json({ message: req.session });
   }
 });
 
