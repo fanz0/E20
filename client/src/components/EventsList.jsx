@@ -16,7 +16,7 @@ export const EventsList = () => {
 
   function fetchEvents() {
     fetch("https://e20-api.vercel.app/api/events", {
-      credentials: "include"
+      credentials: "include",
     })
       .then((response) => {
         if (!response.ok) {
@@ -29,6 +29,11 @@ export const EventsList = () => {
         setIsLoading(false);
       });
   }
+
+  const handleUrlError = (e) => {
+    e.target.src =
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png";
+  };
 
   if (isLoading) {
     return (
@@ -55,6 +60,7 @@ export const EventsList = () => {
                 title={`{title.name}-image`}
                 src={event.URLposter}
                 className="w-full max-w-80 max-h-56 rounded-md"
+                onError={handleUrlError}
               />
               <p className="w-full max-w-80 text-center">{event.description}</p>
             </div>

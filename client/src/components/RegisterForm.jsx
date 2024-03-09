@@ -1,11 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { UserContext } from "../stores/UserContext";
 
 export const RegisterForm = () => {
   const navigate = useNavigate();
-
-  const { setIsLoggedIn } = useContext(UserContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,8 +26,6 @@ export const RegisterForm = () => {
       })
       .then((data) => {
         navigate("/");
-        localStorage.setItem("token", data.token);
-        setIsLoggedIn(true);
         alert(data.message);
       })
       .catch((error) => {

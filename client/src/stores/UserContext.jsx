@@ -6,10 +6,16 @@ export const UserProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
+    fetch("https://e20-api.vercel.app", {
+      method: "get",
+      credentials: "include",
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (data.message == "Active") {
+          setIsLoggedIn(true);
+        }
+      });
   }, []);
 
   return (

@@ -13,13 +13,13 @@ const bcrypt = require("bcrypt");
 require("dotenv").config();
 
 // CORS configure
-app.use(cors(
-    {
+app.use(
+  cors({
     origin: "https://e20-seven.vercel.app",
     method: ["GET", "POST"],
-    credentials: true
-  }
-));
+    credentials: true,
+  })
+);
 
 // Session Configure
 app.use(
@@ -73,8 +73,12 @@ app.use("/api/events", eventRoute);
 app.use("/api/user", userRoute);
 
 app.get("/", (req, res) => {
-    res.send("Hello")
-})
+  if (req.isAuthenticated()) {
+    res.status(200).json({ message: "Active" });
+  } else {
+    res.status(200).json({ message: "Inactive" });
+  }
+});
 
 app.listen(process.env.PORT);
 
