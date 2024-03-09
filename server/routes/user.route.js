@@ -20,6 +20,7 @@ router.post("/login", async (req, res, next) => {
         return next(err);
       }
       req.session.isAuth = true;
+      req.session.user = user;
       res.status(200).json({ message: "Login Effettuato con successo" });
     });
   })(req, res, next);
