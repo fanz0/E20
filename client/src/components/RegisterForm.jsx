@@ -25,7 +25,7 @@ export const RegisterForm = () => {
         return response.json();
       })
       .then((data) => {
-        navigate("/");
+        navigate("/login");
         alert(data.message);
       })
       .catch((error) => {

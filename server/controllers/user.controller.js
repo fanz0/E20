@@ -29,6 +29,7 @@ const registerUser = async (req, res) => {
 };
 
 const loginUser = (req, res) => {
+  req.isAuthenticated();
   res.status(200).json({ message: "Login Effettuato con successo!" });
 };
 
