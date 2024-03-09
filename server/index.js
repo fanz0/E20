@@ -73,6 +73,10 @@ app.use("/api/events", eventRoute);
 app.use("/api/user", userRoute);
 
 app.get("/", (req, res) => {
+    if (req.session) {
+        res.send(req.sessionID)
+    }
+
     res.send("Hello")
 })
 
