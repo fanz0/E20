@@ -73,12 +73,21 @@ app.use("/api/events", eventRoute);
 app.use("/api/user", userRoute);
 
 app.get("/", (req, res) => {
+<<<<<<< HEAD
   if (req.isAuthenticated()) {
     res.status(200).json({ message: "Active" });
   } else {
     res.status(200).json({ message: "Inactive" });
   }
 });
+=======
+    if (req.session) {
+        res.send(req.sessionID)
+    }
+
+    res.send("Hello")
+})
+>>>>>>> bdc8dcb65db9f3315adcbd521b9a5cb0f7e60733
 
 app.listen(process.env.PORT);
 

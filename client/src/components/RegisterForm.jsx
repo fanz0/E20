@@ -26,6 +26,10 @@ export const RegisterForm = () => {
       })
       .then((data) => {
         navigate("/");
+<<<<<<< HEAD
+=======
+        setIsLoggedIn(true);
+>>>>>>> bdc8dcb65db9f3315adcbd521b9a5cb0f7e60733
         alert(data.message);
       })
       .catch((error) => {
