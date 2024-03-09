@@ -12,9 +12,12 @@ export const UserProvider = ({ children }) => {
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.message == "Active") {
+        if (data.message === "Active") {
           setIsLoggedIn(true);
         }
+      })
+      .catch((err) => {
+        console.log(err);
       });
   }, []);
 
