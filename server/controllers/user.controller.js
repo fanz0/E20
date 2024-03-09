@@ -22,16 +22,13 @@ const registerUser = async (req, res) => {
   });
 
   await user.save();
-  res
-    .status(200)
-    .json({
-      message:
-        "Registrazione effettuata con successo! Effettua il login con le tue credenziali",
-    });
+  res.status(200).json({
+    message:
+      "Registrazione effettuata con successo! Effettua il login con le tue credenziali",
+  });
 };
 
 const loginUser = (req, res) => {
-  req.session.isAuth = true;
   res.status(200).json({ message: "Login Effettuato con successo!" });
 };
 
