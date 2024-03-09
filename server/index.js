@@ -10,7 +10,13 @@ const userRoute = require("./routes/user.route");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const bcrypt = require("bcrypt");
+const MongoDBStore = require("connect-mongodb-session")(session);
 require("dotenv").config();
+
+const store = new MongoDBStore({
+  uri: process.env.DB_URI,
+  collection: "mySessions",
+});
 
 // CORS configure
 app.use(
@@ -27,6 +33,7 @@ app.use(
     secret: crypto.randomBytes(64).toString("hex"),
     resave: false,
     saveUninitialized: true,
+    store: store,
   })
 );
 // Passport Configure
