@@ -12,7 +12,7 @@ export const RegisterForm = () => {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    fetch("https://e20-api.vercel.app/api/user/register", {
+    fetch("http://localhost:3000/api/user/register", {
       method: "post",
       credentials: "include",
       headers: {

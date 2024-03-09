@@ -9,8 +9,9 @@ export const Header = () => {
   const navigate = useNavigate();
 
   const handleLogout = () => {
-    fetch("https://e20-api.vercel.app/api/user/logout", {
+    fetch("http://localhost:3000/api/user/logout", {
       method: "post",
+      credentials: "include",
       headers: {
         "Content-Type": "application/json",
       },

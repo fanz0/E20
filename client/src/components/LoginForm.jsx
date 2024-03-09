@@ -13,7 +13,7 @@ export const LoginForm = () => {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    fetch("https://e20-api.vercel.app/api/user/login", {
+    fetch("http://localhost:3000/api/user/login", {
       method: "post",
       credentials: "include",
       headers: {

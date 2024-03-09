@@ -8,7 +8,7 @@ export const NewEvent = () => {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
 
-    fetch("https://e20-api.vercel.app/api/events", {
+    fetch("http://localhost:3000/api/events", {
       method: "post",
       credentials: "include",
       headers: {
