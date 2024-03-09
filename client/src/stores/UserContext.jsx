@@ -1,11 +1,11 @@
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useState(() => {
+  useEffect(() => {
     fetch("http://localhost:3000/", {
       method: "get",
       credentials: "include",
