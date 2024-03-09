@@ -34,8 +34,10 @@ const loginUser = (req, res) => {
 };
 
 const logoutUser = (req, res) => {
-  req.session.destroy((err) => {
-    if (err) throw err;
+  req.logout((err) => {
+    if (err) {
+      console.log(err);
+    }
     res.status(200).json({ message: "Logout Effettuato con Successo!" });
   });
 };
