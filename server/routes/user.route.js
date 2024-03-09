@@ -7,8 +7,8 @@ const { registerUser, logoutUser } = require("../controllers/user.controller");
 router.post("/register", registerUser);
 
 // Login User
-router.post("/login", (req, res, next) => {
-  passport.authenticate("local", (err, user, info) => {
+router.post("/login", async (req, res, next) => {
+  await passport.authenticate("local", (err, user, info) => {
     if (err) {
       return next(err);
     }
