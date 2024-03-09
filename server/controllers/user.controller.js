@@ -25,11 +25,6 @@ const registerUser = async (req, res) => {
   res.status(200).json({ message: "Registrazione effettuata con successo!" });
 };
 
-const loginUser = (req, res) => {
-  req.session.isAuth = true;
-  res.status(200).json({ message: "Login Effettuato con successo!" });
-};
-
 const logoutUser = (req, res) => {
   req.logout((err) => {
     if (err) {
@@ -39,4 +34,4 @@ const logoutUser = (req, res) => {
   });
 };
 
-module.exports = { registerUser, loginUser, logoutUser };
+module.exports = { registerUser, logoutUser };

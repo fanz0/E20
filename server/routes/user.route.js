@@ -1,11 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const passport = require("passport");
-const {
-  registerUser,
-  loginUser,
-  logoutUser,
-} = require("../controllers/user.controller");
+const { registerUser, logoutUser } = require("../controllers/user.controller");
 
 // Register User
 router.post("/register", registerUser);
@@ -23,7 +19,8 @@ router.post("/login", (req, res, next) => {
       if (err) {
         return next(err);
       }
-      return loginUser(req, res);
+      req.session.isAuth = true;
+      res.status(200).json({ message: "Login Effettuato con successo" });
     });
   })(req, res, next);
 });
