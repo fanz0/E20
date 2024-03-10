@@ -25,8 +25,25 @@ const registerUser = async (req, res) => {
   res.status(200).json({ message: "Registrazione effettuata con successo!" });
 };
 
+const loginUser = async (req, res) => {
+  const { username, password } = req.body;
+
+  const user = await User.findOne({ username });
+
+  if (!user) {
+    res.status(404).json({ message: "Questo username non esiste..." });
+  }
+  const isMatch = await bcrypt.compare(password, user.password);
+  if (!isMatch) {
+    res.status(500).json({ message: "Password errata!" });
+  }
+
+  req.session.isAuth = true;
+  res.status(200).json({ message: "Login effettuato con successo!" });
+};
+
 const logoutUser = (req, res) => {
-  req.logout((err) => {
+  req.session.destroy((err) => {
     if (err) {
       console.log(err);
     }
@@ -34,4 +51,4 @@ const logoutUser = (req, res) => {
   });
 };
 
-module.exports = { registerUser, logoutUser };
+module.exports = { registerUser, loginUser, logoutUser };
