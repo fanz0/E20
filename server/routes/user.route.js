@@ -14,7 +14,7 @@ router.post("/register", registerUser);
 router.post("/login", loginUser);
 
 // Refresh User
-router.post("/refresh", refreshUser);
+router.get("/refresh", refreshUser);
 
 // Logout User
 router.post("/logout", logoutUser);
