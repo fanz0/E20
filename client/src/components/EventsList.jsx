@@ -17,6 +17,9 @@ export const EventsList = () => {
   function fetchEvents() {
     fetch("https://e20-api.vercel.app/api/events", {
       credentials: "include",
+      headers: {
+        "Content-Type": "application/json",
+      },
     })
       .then((response) => {
         if (!response.ok) {
