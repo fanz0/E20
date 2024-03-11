@@ -6,13 +6,13 @@ export const UserProvider = ({ children }) => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-    fetch("https://e20-api.vercel.app", {
+    fetch("https://e20-api.vercel.app/api/user/refresh", {
       method: "get",
       credentials: "include",
     })
       .then((response) => response.json())
       .then((data) => {
-        if (data.message === "Active") {
+        if (data.message === "Sessione Autorizzata!") {
           setIsLoggedIn(true);
         }
       })
