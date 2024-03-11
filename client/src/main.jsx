@@ -20,9 +20,9 @@ import "./index.css";
 import { useContext } from "react";
 import { UserContext } from "./stores/UserContext.jsx";
 
-const { isLoggedIn } = useContext(UserContext);
-
 function Login() {
+  const { isLoggedIn } = useContext(UserContext);
+
   if (isLoggedIn) {
     return <Navigate to="/" />;
   }
@@ -31,6 +31,8 @@ function Login() {
 }
 
 function Register() {
+  const { isLoggedIn } = useContext(UserContext);
+
   if (isLoggedIn) {
     return <Navigate to="/" />;
   }
