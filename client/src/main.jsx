@@ -11,8 +11,24 @@ import { ErrorPage } from "./components/ErrorPage.jsx";
 import { RegisterForm } from "./components/RegisterForm.jsx";
 import { LoginForm } from "./components/LoginForm.jsx";
 import { NewEvent } from "./components/NewEvent.jsx";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import { useContext } from "react";
+import { UserContext } from "./stores/UserContext.jsx";
 import "./index.css";
+
+function Login() {
+  const { isLoggedIn } = useContext(UserContext);
+
+  if (isLoggedIn) {
+    return <Navigate to="/" />;
+  }
+
+  return <LoginForm />;
+}
 
 const router = createBrowserRouter([
   {
@@ -68,7 +84,7 @@ const router = createBrowserRouter([
     element: (
       <>
         <Header />
-        <LoginForm />
+        <Login />
         <Footer />
       </>
     ),

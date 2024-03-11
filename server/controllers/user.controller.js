@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
+const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
   const { name, surname, username, password } = req.body;
@@ -38,17 +39,93 @@ const loginUser = async (req, res) => {
     res.status(500).json({ message: "Password errata!" });
   }
 
-  req.session.isAuth = true;
-  res.status(200).json({ message: "Login effettuato con successo!" });
-};
-
-const logoutUser = (req, res) => {
-  req.session.destroy((err) => {
-    if (err) {
-      console.log(err);
+  const accessToken = jwt.sign(
+    {
+      UserInfo: {
+        username: user.username,
+        roles: user.roles,
+      },
+    },
+    process.env.ACCESS_TOKEN_SECRET,
+    {
+      expiresIn: "10m",
     }
-    res.status(200).json({ message: "Logout Effettuato con Successo!" });
+  );
+
+  const refreshToken = jwt.sign(
+    {
+      username: user.username,
+    },
+    process.env.REFRESH_TOKEN_SECRET,
+    {
+      expiresIn: "10m",
+    }
+  );
+
+  res.cookie("jwt", refreshToken, {
+    httpOnly: true,
+    // secure: false,
+    // sameSite: "none",
+    maxAge: 7 * 24 * 60 * 60 * 1000,
+  });
+
+  res.json({
+    message: "Login Effetuato con successo!",
+    accessToken: accessToken,
   });
 };
 
-module.exports = { registerUser, loginUser, logoutUser };
+const refreshCookie = (req, res) => {
+  const cookies = req.cookies;
+
+  if (!cookies?.jwt) {
+    return res.status(401).json({ message: "Non autorizzato" });
+  }
+
+  const refreshToken = cookies.jwt;
+
+  jwt.verify(
+    refreshToken,
+    process.env.REFRESH_TOKEN_SECRET,
+    async (err, decoded) => {
+      if (err) {
+        res.status(403).json({ message: "Accesso Negato" });
+      }
+
+      const user = await User.findOne({ username: decoded.username });
+
+      if (!user) {
+        return res.status(401).json({ message: "Non autorizzato" });
+      }
+
+      const accessToken = jwt.sign(
+        {
+          UserInfo: {
+            username: user.username,
+            roles: user.roles,
+          },
+        },
+        process.env.ACCESS_TOKEN_SECRET,
+        {
+          expiresIn: "10m",
+        }
+      );
+
+      res.json({ message: "Sessione riaperta!", accessToken: accessToken });
+    }
+  );
+};
+
+const logoutUser = (req, res) => {
+  const cookies = req.cookies;
+
+  if (!cookies?.jwt) {
+    return res.status(204).json({ message: "Cookie non esistente" });
+  }
+
+  res.clearCookie("jwt", { httpOnly: true, sameSite: "none", secure: "false" });
+
+  res.json({ message: "Cookie eliminato" });
+};
+
+module.exports = { registerUser, loginUser, logoutUser, refreshCookie };
