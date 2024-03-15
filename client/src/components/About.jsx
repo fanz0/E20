@@ -3,7 +3,7 @@ export const About = () => {
     <div className="flex flex-col items-center mt-20 w-[80%] mx-auto gap-16 p-6 border-y bg-gradient-to-r from-zinc-700 to-blue-900/40 rounded-lg">
       <h1 className="text-3xl">Chi siamo?</h1>
       <p className="text-lg font-mono">
-        Siamo una start app nata nel 2024 che cerca di connettere il territorio
+        Siamo una startup nata nel 2024 che cerca di connettere il territorio
         con i suoi cittadini. Il nostro nome è abbastanza esplicativo, ci
         occupiamo di eventi, eventi di ogni tipo. <br /> <br />{" "}
         <strong>
