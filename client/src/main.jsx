@@ -19,6 +19,7 @@ import {
 import "./index.css";
 import { useContext } from "react";
 import { UserContext } from "./stores/UserContext.jsx";
+import ScrollToTop from "./components/ScrollToTop.jsx";
 
 function Login() {
   const { isLoggedIn } = useContext(UserContext);
@@ -45,6 +46,7 @@ const router = createBrowserRouter([
     path: "/",
     element: (
       <>
+        <ScrollToTop />
         <Header />
         <HomePage />
         <EventsList />
@@ -53,6 +55,7 @@ const router = createBrowserRouter([
     ),
     errorElement: (
       <>
+        <ScrollToTop />
         <Header />
         <ErrorPage />
         <Footer />
@@ -63,6 +66,7 @@ const router = createBrowserRouter([
     path: "/about",
     element: (
       <>
+        <ScrollToTop />
         <Header />
         <About />
         <Footer />
@@ -73,6 +77,7 @@ const router = createBrowserRouter([
     path: "/contacts",
     element: (
       <>
+        <ScrollToTop />
         <Header />
         <Contacts />
         <Footer />
@@ -83,6 +88,7 @@ const router = createBrowserRouter([
     path: "/register",
     element: (
       <>
+        <ScrollToTop />
         <Header />
         <Register />
         <Footer />
@@ -93,6 +99,7 @@ const router = createBrowserRouter([
     path: "/login",
     element: (
       <>
+        <ScrollToTop />
         <Header />
         <Login />
         <Footer />
@@ -103,6 +110,7 @@ const router = createBrowserRouter([
     path: "/addevent",
     element: (
       <>
+        <ScrollToTop />
         <Header />
         <NewEvent />
         <Footer />
